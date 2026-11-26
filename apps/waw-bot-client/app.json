@@ -1,0 +1,12 @@
+{
+	"expo": {
+		"name": "WAW Bot",
+		"slug": "waw-bot",
+		"version": "0.0.0",
+		"platforms": ["ios", "web"],
+		"web": {
+			"bundler": "metro",
+			"output": "single"
+		}
+	}
+}

@@ -12,3 +12,12 @@ node_modules/
 .env
 .env.*
 !.env.example
+
+# Build output
+dist/
+dist-ios/
+out/
+.expo/
+*.tsbuildinfo
+apps/waw-bot-client/ios/
+apps/waw-bot-client/android/
