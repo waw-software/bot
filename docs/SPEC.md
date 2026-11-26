@@ -85,6 +85,7 @@ Decided:
 - Which real model stands behind Server default, Fast, Balanced and Most capable is set on the server by environment variables.
 - First run shows a setup page with the server address, an access token, a pairing link and a QR code that carries the address and a one-time token.
 - Images are tagged with semantic versions. Updating is `docker compose pull && docker compose up -d`. Migrations run automatically on start, after a database dump.
+- Decided (26 Nov 2026): limits are set on the server by environment variables, with these defaults: file size 25 MB, memory loaded into context 20,000 tokens, tool steps per turn 25. A turn stops when it reaches the step limit.
 
 ### 3.2 Versioning between client and server
 
@@ -174,6 +175,7 @@ Decided:
 - For WAW Notes and WAW Tasks the URL is the app's `/mcp` address and the token is the "Token for bots" from that app's Settings.
 - Each bot has its own set of tools. A tool is Off, Ask or Auto for that bot.
 - On desktop the level is set per action of a connector (for Gmail: read and search, create drafts, send, delete). On mobile one level covers the connector. The per-action model is the real one; mobile shows a summary.
+- Decided (26 Nov 2026): the built-in connectors with OAuth in v1 are Gmail and Calendar. Notion, GitHub, Drive and Slack, shown in the design, are not built-in connectors in v1.
 
 ### 5.6 Approvals
 
@@ -186,6 +188,7 @@ Decided:
 - A draft can be reviewed before approval: recipient, sender, subject, the text (editable), attachments. The user can approve and send, decline, or tell the bot what to change.
 - "Do not ask again for emails to <address>" adds an exception. Exceptions are listed under the tool as "Allowed without asking" and can be removed.
 - The user is notified when a bot needs approval.
+- Decided (26 Nov 2026): when the user declines an approval, the card in the thread shows "Declined", the action does not run, and the bot receives the decline as the tool result and ends its turn with a short reply.
 
 ### 5.7 Routines
 
@@ -194,6 +197,7 @@ Decided:
 - A routine has a name, a bot, a trigger (a schedule with days and time, or an event such as "when mail arrives"), an instruction, and "notify me when it finishes".
 - The scheduler writes into a thread of that bot by itself. A routine can stay quiet unless it finds something.
 - Routines can be paused. A user can also create one by telling a bot "do this every morning".
+- Decided (26 Nov 2026): in v1 a routine starts on a schedule or on one event: a new email in a connected Gmail.
 
 ### 5.8 Models
 
@@ -210,6 +214,7 @@ Decided:
 - Avatar: an icon from a fixed set, an emoji, or an uploaded image cropped to a square.
 - Colour: one of ten. It is independent of the avatar: a photo avatar can have a green colour.
 - The colour themes that bot's threads. See `DESIGN.md` section 3.
+- Decided (26 Nov 2026): a bot is archived, not deleted. An archived bot leaves the bots list, runs nothing (its routines are paused), and keeps its threads and memory; it can be restored. Commander cannot be archived.
 
 ### 5.10 Desktop app
 
@@ -252,9 +257,4 @@ Work in vertical slices. Each slice includes the API, the screen and a test.
 
 ## 8. Open questions
 
-- Which built-in connectors ship in v1? The design shows Gmail, Calendar, Notion, GitHub, Drive, Slack.
-- What is the fixed list of events a routine can start on?
-- What does a declined approval look like in the thread, and what does the bot do next?
-- Can a bot be deleted, and what happens to its threads and memory?
-- Limits: file size, memory size loaded into context, steps per turn.
-- How does the relay authenticate a user's server?
+- How does the relay authenticate a user's server? To be decided in Milestone 12, with its own ADR.

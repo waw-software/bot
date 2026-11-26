@@ -16,6 +16,7 @@ Serves: none directly.
 - Scaffold the pnpm monorepo with each stack's own generator.
 - Pin the toolchain, commit the lockfile and add `.env.example`.
 - Checks for the starting stage (format, lint, type check, unit tests), wired into scripts/checks.d/ and `.claude/harness.conf`, each proven to fail.
+- API end-to-end tests against the compose stack with a fake model behind the adapter.
 - Design tokens, the avatar component and the thread theme (see [DESIGN.md](DESIGN.md)).
 - Server skeleton: `/health`, auth, migrations, Docker image and compose file.
 
@@ -33,15 +34,16 @@ Serves: REQ-001, REQ-002, REQ-003, REQ-004.
 - One bot, one thread.
 - The loop with the model adapter and streaming, no tools.
 
-Serves: REQ-006, REQ-015, REQ-016, REQ-017.
+Serves: REQ-006, REQ-015, REQ-016, REQ-017, REQ-022.
 
 ## Milestone 4: Bots and threads
 
 - Bots list.
 - Threads list.
 - New thread.
+- Archive and restore a bot.
 
-Serves: REQ-005, REQ-006.
+Serves: REQ-005, REQ-006, REQ-021.
 
 ## Milestone 5: Memory
 
@@ -49,7 +51,7 @@ Serves: REQ-005, REQ-006.
 - The background pass.
 - The memory screens.
 
-Serves: REQ-007.
+Serves: REQ-007, REQ-022.
 
 ## Milestone 6: Tools
 
@@ -82,7 +84,7 @@ Serves: REQ-013.
 
 ## Milestone 10: Built-in connectors
 
-- Built-in connectors with OAuth.
+- Built-in connectors with OAuth: Gmail and Calendar.
 
 Serves: REQ-008, REQ-016.
 
@@ -96,6 +98,7 @@ Serves: REQ-006, REQ-014.
 ## Milestone 12: Push
 
 - Push through the relay.
+- Decide how the relay authenticates a user's server, in an ADR.
 
 Serves: REQ-010, REQ-020.
 
