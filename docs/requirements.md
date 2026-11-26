@@ -48,50 +48,54 @@ REQ-010: A tool call at level Ask never runs before the user approves it, and th
 AC-27: Given an action at level Ask, when the model asks for it, then it does not run before the user approves it, an "Approval needed" card in the thread shows what will happen with Decline and Approve, the turn waits and the user is notified.
 AC-28: Given a bot with several waiting requests, when the user chooses "Approve all", then that bot's requests are approved.
 AC-29: Given a waiting request, when the user declines it, then the action does not run.
-AC-30: Given an exception added with "Do not ask again", which is listed under the tool as "Allowed without asking" until removed, when the bot makes the next matching call, then it runs without asking.
+AC-30: Given an exception added with "Do not ask again for emails to <address>", which is listed under the tool as "Allowed without asking" until removed, when the bot next sends an email to that address, then it runs without asking, and an email to another address still waits for approval.
+AC-31: Given waiting requests, when the user looks at the bots list, then "Needs you" shows with a count, one request shows as a single card, several are grouped by bot with two rows, "and N more" and "See all", and each waiting bot shows "Waiting" with a count.
+AC-32: Given several waiting requests, when the user chooses "See all", then every request is listed, grouped by bot, longest wait first, and each can be approved or declined in place.
+AC-33: Given a bot with several waiting requests, when the user chooses "Decline all", then that bot's requests are declined and none of those actions runs.
+AC-34: Given a draft that waits for approval, when the user reviews it, then the user sees the recipient, sender, subject, editable text and attachments, and can approve and send it, decline it or tell the bot what to change.
 
 REQ-011: Commander delegates a job to another bot with `delegate`. ([SPEC §5.2](SPEC.md#52-commander))
-AC-31: Given a thread with Commander, when Commander delegates a brief to another bot, then the same loop runs for that bot and its result returns to Commander as a tool result.
-AC-32: Given a delegated job, when the user looks at Commander's thread, then a card for the job shows its state and a link to the other bot's thread.
+AC-35: Given a thread with Commander, when Commander delegates a brief to another bot, then the same loop runs for that bot and its result returns to Commander as a tool result.
+AC-36: Given a delegated job, when the user looks at Commander's thread, then a card for the job shows its state and a link to the other bot's thread.
 
 REQ-012: Commander creates a bot with `create-bot` after the user confirms it, and the user can skip Commander and talk to a bot directly. ([SPEC §5.2](SPEC.md#52-commander))
-AC-33: Given a request to Commander for a new bot, when Commander has asked its questions, then it shows the bot it would create, with role, model, tools and what it must ask before doing.
-AC-34: Given the shown bot, when the user confirms, then Commander creates it.
-AC-35: Given the shown bot, when the user has not yet created it, then the user can edit it first.
-AC-36: Given several bots, when the user wants one of them, then the user can talk to it directly without Commander.
+AC-37: Given a request to Commander for a new bot, when Commander has asked its questions, then it shows the bot it would create, with role, model, tools and what it must ask before doing.
+AC-38: Given the shown bot, when the user confirms, then Commander creates it.
+AC-39: Given the shown bot, when the user has not yet created it, then the user can edit it first.
+AC-40: Given several bots, when the user wants one of them, then the user can talk to it directly without Commander.
 
 REQ-013: The user calls another bot into a thread with `@handle` for one reply. ([SPEC §5.3](SPEC.md#53-threads-and-calling-another-bot))
-AC-37: Given a thread, when the user types `@`, then a list of bots opens.
-AC-38: Given a bot called into a thread, when it replies, then it has read the thread, uses its own memory and tools, joins for that one reply only, and the thread stays with its owner.
-AC-39: Given a called bot's reply, when it is shown, then it appears under that bot's own name, avatar and colour.
+AC-41: Given a thread, when the user types `@`, then a list of bots opens.
+AC-42: Given a bot called into a thread, when it replies, then it has read the thread, uses its own memory and tools, joins for that one reply only, and the thread stays with its owner.
+AC-43: Given a called bot's reply, when it is shown, then it appears under that bot's own name, avatar and colour.
 
 REQ-014: A routine starts a bot's work on a schedule or an event, with an instruction and an option to notify the user, writes into a thread of that bot and can be paused. ([SPEC §5.7](SPEC.md#57-routines))
-AC-40: Given the routine settings, when the user defines a routine, then it has a name, a bot, a schedule with days and time or an event as its trigger, an instruction and "notify me when it finishes".
-AC-41: Given a routine, when its trigger occurs, then the scheduler writes into a thread of that bot by itself, and the routine can stay quiet unless it finds something.
-AC-42: Given a routine, when the user pauses it, then the routine is paused.
-AC-43: Given a thread with a bot, when the user tells it "do this every morning", then a routine is created.
+AC-44: Given the routine settings, when the user defines a routine, then it has a name, a bot, a schedule with days and time or an event as its trigger, an instruction and "notify me when it finishes".
+AC-45: Given a routine, when its trigger occurs, then the scheduler writes into a thread of that bot by itself, and the routine can stay quiet unless it finds something.
+AC-46: Given a routine, when the user pauses it, then the routine is paused.
+AC-47: Given a thread with a bot, when the user tells it "do this every morning", then a routine is created.
 
 REQ-015: Each bot uses Server default, Fast, Balanced, Most capable or a specific model ID. ([SPEC §3.1](SPEC.md#31-deployment-and-first-run), [SPEC §5.8](SPEC.md#58-models))
-AC-44: Given a bot, when the user picks its model, then the choice is Server default, Fast, Balanced, Most capable or a specific model ID that the server's keys can reach.
-AC-45: Given a bot set to a tier, when the server's environment variables map that tier to another real model, then the bot's setting keeps working.
+AC-48: Given a bot, when the user picks its model, then the choice is Server default, Fast, Balanced, Most capable or a specific model ID that the server's keys can reach.
+AC-49: Given a bot set to a tier, when the server's environment variables map that tier to another real model, then the bot's setting keeps working.
 
-REQ-016: Keys and tokens stay on the server, and clients never receive model keys or connector tokens. ([SPEC §1](SPEC.md#1-what-it-is), [SPEC §5.5](SPEC.md#55-connectors-and-tools))
-AC-46: Given a server with model keys and connected connectors, when a client uses the server, then the client receives no model key and no connector token.
+REQ-016: Model keys and connector tokens stay on the server; clients never receive them. ([SPEC §1](SPEC.md#1-what-it-is), [SPEC §5.5](SPEC.md#55-connectors-and-tools))
+AC-50: Given a server with model keys and connected connectors, when a client uses the server, then the client receives no model key and no connector token.
 
 REQ-017: Models are called through one adapter for Anthropic `/v1/messages` and OpenRouter `/chat/completions`, and the Worker has its own MCP client. ([SPEC §3](SPEC.md#3-architecture))
-AC-47: Given Anthropic or OpenRouter as the provider, when the Worker calls a model, then the call goes through the adapter, which uses one internal format and hides the differences between the providers.
-AC-48: Given a server without an Anthropic key, when it calls a model, then the call goes through OpenRouter.
-AC-49: Given a connector tool, when the Worker runs it, then it uses its own MCP client and does not rely on a provider-side MCP feature.
+AC-51: Given Anthropic or OpenRouter as the provider, when the Worker calls a model, then the call goes through the adapter, which uses one internal format and hides the differences between the providers.
+AC-52: Given a server without an Anthropic key, when it calls a model, then the call goes through OpenRouter.
+AC-53: Given a connector tool, when the Worker runs it, then it uses its own MCP client and does not rely on a provider-side MCP feature.
 
 REQ-018: The clients are an iOS app and an Electron desktop app, with no web client. ([SPEC §1](SPEC.md#1-what-it-is), [SPEC §2](SPEC.md#2-scope))
-AC-50: Given a deployed server, when the user wants to use it, then the user does so with the iOS app or the Electron desktop app.
-AC-51: Given a deployed server, when a browser requests a web client from it, then it serves no client files.
+AC-54: Given a deployed server, when the user wants to use it, then the user does so with the iOS app or the Electron desktop app.
+AC-55: Given a deployed server, when a browser requests a web client from it, then it serves no client files.
 
 REQ-019: The desktop app has an "Ask any bot" window opened by a global shortcut, and desktop settings. ([SPEC §5.10](SPEC.md#510-desktop-app))
-AC-52: Given the desktop app, when the user presses the global shortcut in any app or the shortcut inside the app, then a small "Ask any bot" window opens that offers a new thread or continuing a recent one.
-AC-53: Given the "Ask any bot" window, when the user sends a message, then it goes to the bot of the leading `@handle`, or to Commander when there is no handle.
-AC-54: Given the desktop settings, when the user opens them, then they cover open at login, keep running in the menu bar or tray, the Needs you count on the app icon, the global shortcut and pairing a phone with a QR code.
+AC-56: Given the desktop app, when the user presses the global shortcut in any app or the shortcut inside the app, then a small "Ask any bot" window opens that offers a new thread or continuing a recent one.
+AC-57: Given the "Ask any bot" window, when the user sends a message, then it goes to the bot of the leading `@handle`, or to Commander when there is no handle.
+AC-58: Given the desktop settings, when the user opens them, then they cover open at login, keep running in the menu bar or tray, the Needs you count on the app icon, the global shortcut and pairing a phone with a QR code.
 
 REQ-020: Push notifications reach the phone through the product owner's relay to APNs, and the server holds no APNs keys. ([SPEC §3](SPEC.md#3-architecture), [SPEC §5.6](SPEC.md#56-approvals))
-AC-55: Given a phone connected to the server, when the server sends a push notification, then it goes from the server to the relay and from the relay to APNs.
-AC-56: Given a deployed server, when it is configured to run, then it holds no APNs keys.
+AC-59: Given a phone connected to the server, when the server sends a push notification, then it goes from the server to the relay and from the relay to APNs.
+AC-60: Given a deployed server, when it is configured to run, then it holds no APNs keys.

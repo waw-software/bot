@@ -30,14 +30,15 @@ Chosen option: "A pnpm monorepo: React Native for iOS, the same client with Reac
 Electron, a Node and TypeScript server, and Postgres", because iOS and the desktop share one
 client codebase, one language covers the client, the server and the contract package, and
 Postgres as the job queue keeps the self-hosted install to two services. The owner accepted the
-proposed stack on 26 Nov 2026. The layout and packaging are in
-[the spec, section 3](../SPEC.md#3-architecture). Exact versions, the ORM, the test runner, the
-linter and the formatter are not decided here; they are chosen in Milestone 1.
+proposed stack on 26 Nov 2026. The alternatives were not discussed with the owner; they were
+weighed when this decision was recorded, against the forces in the spec. The layout and
+packaging are in [the spec, section 3](../SPEC.md#3-architecture). Exact versions, the ORM, the
+test runner, the linter and the formatter are not decided here; they are chosen in Milestone 1.
 
-Rejected: Swift with a separate desktop client, because the two clients would not share one
-codebase; a web UI in Electron next to React Native, because it also means two client codebases;
-a Go or Python server, because the server would not share one language with the clients and the
-contract package.
+Rejected in that analysis: Swift with a separate desktop client, because the two clients would
+not share one codebase; a web UI in Electron next to React Native, because it also means two
+client codebases; a Go or Python server, because the server would not share one language with
+the clients and the contract package.
 
 ### Consequences
 
