@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Connectors catalog</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#B01A31}a:hover{color:#8C1427}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 56px 20px 20px; display: flex; flex-direction: column; gap: 10px; background: #FFFFFF; color: #171717; font-family: Inter, system-ui, sans-serif">
+<div style="display: flex; align-items: center; gap: 6px; margin-left: -8px">
+<a href="Settings.dc.html" aria-label="Back to settings" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #171717">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+</a>
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 24px; letter-spacing: -0.3px">Connectors</h1>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #D9D6D0; border-radius: 12px">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5C5C5C" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+<label for="conn-search" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%)">Search connectors</label>
+<input id="conn-search" type="search" placeholder="Search connectors" style="flex-grow: 1; min-width: 0; height: 44px; border: none; background: transparent; font-family: inherit; font-size: 16px; color: #171717">
+</div>
+<div style="display: flex; gap: 8px; overflow-x: auto; margin: 0 -20px; padding: 0 20px">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="7">
+<button type="button" aria-pressed="{{f.pressed}}" style="flex-shrink: 0; height: 44px; padding: 0 14px; border: 1px solid {{f.line}}; border-radius: 999px; background: {{f.bg}}; color: {{f.ink}}; font-family: inherit; font-size: 14px; font-weight: 500">{{f.label}}</button>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.4px; color: #B01A31">WAW APPS</span>
+<sc-for list="{{waw}}" as="w" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 52px; border-bottom: 1px solid #EEECE8">
+<span aria-hidden="true" style="width: 34px; height: 34px; flex-shrink: 0; border-radius: 10px; background: #D4213D; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">W</span>
+<span style="display: flex; flex-direction: column; gap: 1px; flex-grow: 1; min-width: 0"><span style="font-size: 15px; font-weight: 600">{{w.name}}</span><span style="font-size: 13px; color: #5C5C5C">{{w.sub}}</span></span>
+<a href="AddMcp.dc.html" style="padding: 12px 14px; border: 1px solid #171717; border-radius: 10px; font-size: 14px; font-weight: 600; color: #171717; text-decoration: none">Add URL</a>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.4px; color: #5C5C5C">CONNECTED · 4</span>
+<sc-for list="{{connected}}" as="c" hint-placeholder-count="4">
+<a href="ConnectGmail.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 52px; border-bottom: 1px solid #EEECE8; text-decoration: none; color: #171717">
+<span aria-hidden="true" style="width: 34px; height: 34px; flex-shrink: 0; border-radius: 10px; background: #F6F5F2; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{c.letter}}</span>
+<span style="display: flex; flex-direction: column; gap: 1px; flex-grow: 1; min-width: 0"><span style="font-size: 15px; font-weight: 600">{{c.name}}</span><span style="font-size: 13px; color: #5C5C5C">{{c.sub}}</span></span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: #1B6943"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #1F7A4D"></span>{{c.bots}}</span>
+</a>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.4px; color: #5C5C5C">AVAILABLE</span>
+<sc-for list="{{available}}" as="a" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 52px; border-bottom: 1px solid #EEECE8">
+<span aria-hidden="true" style="width: 34px; height: 34px; flex-shrink: 0; border-radius: 10px; background: #F6F5F2; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{a.letter}}</span>
+<span style="display: flex; flex-direction: column; gap: 1px; flex-grow: 1; min-width: 0"><span style="font-size: 15px; font-weight: 600">{{a.name}}</span><span style="font-size: 13px; color: #5C5C5C">{{a.sub}}</span></span>
+<a href="ConnectGmail.dc.html" style="padding: 12px 14px; border: 1px solid #171717; border-radius: 10px; font-size: 14px; font-weight: 600; color: #171717; text-decoration: none">Connect</a>
+</div>
+</sc-for>
+</div>
+<a href="AddMcp.dc.html" style="margin-top: auto; height: 50px; box-sizing: border-box; border: 1px dashed #5C5C5C; border-radius: 14px; color: #171717; font-size: 15px; font-weight: 500; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+<span>Add any server by MCP URL</span>
+</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+var waw = [
+{ name: 'WAW Notes', sub: 'Notes · MCP URL and bot token' },
+{ name: 'WAW Tasks', sub: 'Tasks · MCP URL and bot token' }
+];
+var filters = ['All', 'WAW', 'Connected', 'Mail', 'Calendar', 'Docs', 'Tasks', 'Code', 'Chat'].map(function (label, i) {
+var on = i === 0;
+return { label: label, pressed: on ? 'true' : 'false', line: on ? '#171717' : '#D9D6D0', bg: on ? '#171717' : '#FFFFFF', ink: on ? '#FFFFFF' : '#171717' };
+});
+var connected = [
+{ letter: 'G', name: 'Gmail', sub: 'Mail · read, drafts', bots: '2 bots' },
+{ letter: 'C', name: 'Calendar', sub: 'Calendar · read, edit', bots: '1 bot' },
+{ letter: 'N', name: 'Notion', sub: 'Docs · read, write', bots: '1 bot' },
+{ letter: 'G', name: 'GitHub', sub: 'Code · read', bots: '1 bot' }
+];
+var available = [
+{ letter: 'D', name: 'Drive', sub: 'Docs' },
+{ letter: 'S', name: 'Slack', sub: 'Chat' }
+];
+return { waw: waw, filters: filters, connected: connected, available: available };
+}
+}
+</script>
+</body>
+</html>
