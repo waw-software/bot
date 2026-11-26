@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#B01A31}a:hover{color:#8C1427}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 56px 20px 28px; display: flex; flex-direction: column; gap: 18px; background: #FFFFFF; color: #171717; font-family: Inter, system-ui, sans-serif">
+<div style="display: flex; align-items: center; gap: 6px; margin-left: -8px">
+<a href="Bots.dc.html" aria-label="Back to bots" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #171717">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+</a>
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 24px; letter-spacing: -0.3px">Settings</h1>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 16px; border-radius: 16px; background: #FCEBEE">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.4px; color: #B01A31">SERVER UPDATE AVAILABLE</span>
+<span style="font-size: 15px; line-height: 22px; color: #171717">A newer server version is out. Updating turns on features this app already supports.</span>
+<a href="ConnectError.dc.html" style="align-self: flex-start; font-size: 15px; font-weight: 600; padding: 8px 0">How to update</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.4px; color: #5C5C5C">SERVER</span>
+<div style="display: flex; flex-direction: column; border: 1px solid #E4E2DD; border-radius: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px; border-bottom: 1px solid #EEECE8">
+<span style="font-size: 15px; color: #5C5C5C">Address</span>
+<span style="font-size: 15px; font-weight: 500">bot.example.com</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px; border-bottom: 1px solid #EEECE8">
+<span style="font-size: 15px; color: #5C5C5C">Status</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 500; color: #1B6943"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #1F7A4D"></span>Online · API v1</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px">
+<span style="font-size: 15px; color: #5C5C5C">Default model</span>
+<span style="font-size: 15px; font-weight: 500">Set on server</span>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; border: 1px solid #E4E2DD; border-radius: 14px">
+<a href="Connectors.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; padding: 0 14px; border-bottom: 1px solid #EEECE8; text-decoration: none; color: #171717">
+<span style="font-size: 16px; font-weight: 500">Connectors</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 14px; color: #5C5C5C">4 connected<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></span>
+</a>
+<a href="Routines.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; padding: 0 14px; text-decoration: none; color: #171717">
+<span style="font-size: 16px; font-weight: 500">Routines</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 14px; color: #5C5C5C">2 active<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></span>
+</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.4px; color: #5C5C5C">NOTIFY ME WHEN</span>
+<div style="display: flex; flex-direction: column; border: 1px solid #E4E2DD; border-radius: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 0 14px; border-bottom: 1px solid #EEECE8">
+<label for="n-approve" style="font-size: 16px; flex-grow: 1; padding: 14px 0">A bot needs my approval</label>
+<input id="n-approve" type="checkbox" checked style="width: 24px; height: 24px; accent-color: #171717">
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 0 14px">
+<label for="n-done" style="font-size: 16px; flex-grow: 1; padding: 14px 0">A long task is finished</label>
+<input id="n-done" type="checkbox" checked style="width: 24px; height: 24px; accent-color: #171717">
+</div>
+</div>
+</div>
+<a href="Main.dc.html" style="margin-top: auto; align-self: center; font-size: 15px; font-weight: 500; padding: 12px 8px">Disconnect from this server</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

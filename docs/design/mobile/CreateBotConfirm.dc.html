@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Confirm the new bot</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#B01A31}a:hover{color:#8C1427}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 56px 0 20px; display: flex; flex-direction: column; background: #FFFFFF; color: #171717; font-family: Inter, system-ui, sans-serif">
+<div style="display: flex; align-items: center; gap: 10px; padding: 0 12px 12px; border-bottom: 1px solid #EEECE8">
+<a href="CreateBotChat.dc.html" aria-label="Back" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #171717">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+</a>
+<div aria-hidden="true" style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 12px; background: #171717; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M15.5 8.5l-2 5-5 2 2-5z"></path></svg>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 16px; font-weight: 600">Commander</span>
+<span style="font-size: 13px; color: #5C5C5C">New bot</span>
+</div>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 14px; padding: 18px 16px 0">
+<div style="align-self: flex-start; max-width: 300px; padding: 12px 14px; border-radius: 18px 18px 18px 4px; background: #F6F5F2; font-size: 15px; line-height: 22px">Here is the bot I would create. Change anything before it goes live.</div>
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 18px; border: 1px solid #171717; border-radius: 18px">
+<div style="display: flex; align-items: center; gap: 12px">
+<div aria-hidden="true" style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 14px; background: #F6F5F2; display: flex; align-items: center; justify-content: center">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"></path><path d="M9 8h6M9 12h6"></path></svg>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 600">Accountant</span>
+<span style="font-size: 13px; color: #5C5C5C">New bot</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.4px; color: #5C5C5C">ROLE</span>
+<span style="font-size: 15px; line-height: 22px">Handles receipts, invoices and expense emails.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.4px; color: #5C5C5C">MODEL</span>
+<span style="font-size: 15px">Server default</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.4px; color: #5C5C5C">TOOLS</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="padding: 6px 12px; border-radius: 999px; background: #F6F5F2; font-size: 14px">Gmail: read, drafts</span>
+<span style="padding: 6px 12px; border-radius: 999px; background: #F6F5F2; font-size: 14px">Files</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.4px; color: #5C5C5C">SENDING EMAIL</span>
+<span style="font-size: 15px">Always asks you first</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<button type="button" style="height: 50px; border: 1px solid #D9D6D0; border-radius: 12px; background: #FFFFFF; color: #171717; font-family: inherit; font-size: 15px; font-weight: 500">Edit</button>
+<a href="Bots.dc.html" style="height: 50px; border-radius: 12px; background: #D4213D; color: #FFFFFF; font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center">Create bot</a>
+</div>
+</div>
+<span style="font-size: 13px; line-height: 20px; color: #5C5C5C">The new bot gets its own threads and its own memory. It also reads your shared profile.</span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ask Commander for a new bot</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#B01A31}a:hover{color:#8C1427}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 56px 0 20px; display: flex; flex-direction: column; background: #FFFFFF; color: #171717; font-family: Inter, system-ui, sans-serif">
+<div style="display: flex; align-items: center; gap: 10px; padding: 0 12px 12px; border-bottom: 1px solid #EEECE8">
+<a href="Bots.dc.html" aria-label="Back to bots" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #171717">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+</a>
+<div aria-hidden="true" style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 12px; background: #171717; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M15.5 8.5l-2 5-5 2 2-5z"></path></svg>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 16px; font-weight: 600">Commander</span>
+<span style="font-size: 13px; color: #5C5C5C">New bot</span>
+</div>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 14px; padding: 18px 16px 0">
+<div style="align-self: flex-end; max-width: 290px; padding: 12px 14px; border-radius: 18px 18px 4px 18px; background: #171717; color: #FFFFFF; font-size: 15px; line-height: 22px">I need a bot for bookkeeping.</div>
+<div style="align-self: flex-start; max-width: 300px; padding: 12px 14px; border-radius: 18px 18px 18px 4px; background: #F6F5F2; font-size: 15px; line-height: 22px">Sure. Two quick questions before I set it up.</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border: 1px solid #E4E2DD; border-radius: 16px">
+<span style="font-size: 15px; font-weight: 600">Which tools should it use?</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" aria-pressed="true" style="height: 44px; padding: 0 16px; border: 1px solid #171717; border-radius: 999px; background: #171717; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 500">Gmail</button>
+<button type="button" aria-pressed="false" style="height: 44px; padding: 0 16px; border: 1px solid #D9D6D0; border-radius: 999px; background: #FFFFFF; color: #171717; font-family: inherit; font-size: 14px; font-weight: 500">Calendar</button>
+<button type="button" aria-pressed="true" style="height: 44px; padding: 0 16px; border: 1px solid #171717; border-radius: 999px; background: #171717; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 500">Files</button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border: 1px solid #E4E2DD; border-radius: 16px">
+<span style="font-size: 15px; font-weight: 600">When may it send email?</span>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<button type="button" aria-pressed="true" style="height: 46px; padding: 0 14px; border: 1px solid #D4213D; border-radius: 12px; background: #FCEBEE; color: #8C1427; font-family: inherit; font-size: 14px; font-weight: 600; text-align: left">Always ask me first</button>
+<button type="button" aria-pressed="false" style="height: 46px; padding: 0 14px; border: 1px solid #D9D6D0; border-radius: 12px; background: #FFFFFF; color: #171717; font-family: inherit; font-size: 14px; font-weight: 500; text-align: left">Ask only for new recipients</button>
+</div>
+</div>
+<a href="CreateBotConfirm.dc.html" style="align-self: flex-end; padding: 13px 20px; border-radius: 12px; background: #D4213D; color: #FFFFFF; font-size: 15px; font-weight: 600; text-decoration: none">Continue</a>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px 0">
+<label for="composer" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%)">Message Commander</label>
+<input id="composer" type="text" placeholder="Or describe it in your own words" style="flex-grow: 1; min-width: 0; height: 50px; box-sizing: border-box; padding: 0 16px; border: 1px solid #D9D6D0; border-radius: 14px; background: #FFFFFF; font-family: inherit; font-size: 16px; color: #171717">
+<button type="button" aria-label="Send message" style="width: 50px; height: 50px; flex-shrink: 0; border: none; border-radius: 14px; background: #171717; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+</button>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

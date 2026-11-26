@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>New thread</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#B01A31}a:hover{color:#8C1427}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 56px 0 20px; display: flex; flex-direction: column; background: #FFFFFF; color: #171717; font-family: Inter, system-ui, sans-serif">
+<div style="display: flex; align-items: center; gap: 10px; padding: 0 12px 12px; border-bottom: 1px solid #EEECE8">
+<a href="Threads.dc.html" aria-label="Back to threads" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #171717">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+</a>
+<div aria-hidden="true" style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 12px; overflow: hidden; background: #F6F5F2; color: #171717; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #1F7A4D"><svg viewBox="0 0 48 48" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><rect width="48" height="48" fill="#F1DFB8"></rect><circle cx="33" cy="16" r="7" fill="#E6A93C"></circle><path d="M0 34l12-12 10 9 8-6 18 14v9H0z" fill="#7C9A74"></path><path d="M0 40l14-9 12 7 10-5 12 8v7H0z" fill="#4E7A62"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 16px; font-weight: 600">Accountant</span>
+<span style="font-size: 13px; color: #5C5C5C">New thread</span>
+</div>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 0 20px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 26px; line-height: 32px; letter-spacing: -0.3px">Starts clean, remembers what matters</h1>
+<p style="margin: 0; font-size: 15px; line-height: 22px; color: #5C5C5C">This thread has no history yet. Accountant still knows what it saved from earlier work.</p>
+</div>
+<a href="Memory.dc.html" style="align-self: flex-start; display: flex; align-items: center; gap: 8px; padding: 12px 14px; border: 1px solid #E4E2DD; border-radius: 12px; text-decoration: none; color: #171717; font-size: 14px; font-weight: 500">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5"></path></svg>
+<span>Memory loaded: profile + 3 files</span>
+</a>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.4px; color: #5C5C5C">TRY</span>
+<button type="button" style="min-height: 48px; padding: 12px 14px; border: 1px solid #E4E2DD; border-radius: 12px; background: #FFFFFF; color: #171717; font-family: inherit; font-size: 15px; text-align: left">Draft an expense email</button>
+<button type="button" style="min-height: 48px; padding: 12px 14px; border: 1px solid #E4E2DD; border-radius: 12px; background: #FFFFFF; color: #171717; font-family: inherit; font-size: 15px; text-align: left">Find a receipt in Gmail</button>
+<button type="button" style="min-height: 48px; padding: 12px 14px; border: 1px solid #E4E2DD; border-radius: 12px; background: #FFFFFF; color: #171717; font-family: inherit; font-size: 15px; text-align: left">Collect this month's invoices</button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 16px 0">
+<span style="font-size: 12px; color: #5C5C5C">Type @ to bring in another bot</span>
+<div style="display: flex; align-items: center; gap: 10px">
+<label for="composer" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%)">Message Accountant</label>
+<input id="composer" type="text" placeholder="Message Accountant" style="flex-grow: 1; min-width: 0; height: 50px; box-sizing: border-box; padding: 0 16px; border: 1px solid #D9D6D0; border-radius: 14px; background: #FFFFFF; font-family: inherit; font-size: 16px; color: #171717">
+<button type="button" aria-label="Send message" style="width: 50px; height: 50px; flex-shrink: 0; border: none; border-radius: 14px; background: #1F7A4D; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

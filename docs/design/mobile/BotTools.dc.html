@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bot tools and permissions</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#B01A31}a:hover{color:#8C1427}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 56px 20px 24px; display: flex; flex-direction: column; gap: 14px; background: #FFFFFF; color: #171717; font-family: Inter, system-ui, sans-serif">
+<div style="display: flex; align-items: center; gap: 12px; margin-left: -8px">
+<a href="Bots.dc.html" aria-label="Back to bots" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #171717">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+</a>
+<div aria-hidden="true" style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 12px; overflow: hidden; background: #F6F5F2; color: #171717; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #1F7A4D"><svg viewBox="0 0 48 48" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><rect width="48" height="48" fill="#F1DFB8"></rect><circle cx="33" cy="16" r="7" fill="#E6A93C"></circle><path d="M0 34l12-12 10 9 8-6 18 14v9H0z" fill="#7C9A74"></path><path d="M0 40l14-9 12 7 10-5 12 8v7H0z" fill="#4E7A62"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 1px; flex-grow: 1">
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.2px">Accountant</h1>
+<span style="font-size: 13px; color: #5C5C5C">@accountant</span>
+</div>
+<a href="EditBot.dc.html" aria-label="Customize bot" style="width: 44px; height: 44px; border: 1px solid #E4E2DD; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #171717">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"></path><path d="M13 7l4 4"></path></svg>
+</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 14px; background: #F6F5F2">
+<a href="Threads.dc.html" style="height: 44px; border-radius: 10px; color: #5C5C5C; font-size: 15px; font-weight: 500; text-decoration: none; display: flex; align-items: center; justify-content: center">Threads</a>
+<a href="Memory.dc.html" style="height: 44px; border-radius: 10px; color: #5C5C5C; font-size: 15px; font-weight: 500; text-decoration: none; display: flex; align-items: center; justify-content: center">Memory</a>
+<button type="button" aria-pressed="true" style="height: 44px; border: none; border-radius: 10px; background: #FFFFFF; color: #171717; font-family: inherit; font-size: 15px; font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,0.08)">Tools</button>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #D9D6D0; border-radius: 12px">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5C5C5C" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+<label for="tool-search" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%)">Search tools</label>
+<input id="tool-search" type="search" placeholder="Search tools" style="flex-grow: 1; min-width: 0; height: 44px; border: none; background: transparent; font-family: inherit; font-size: 16px; color: #171717">
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.4px; color: #5C5C5C">ON FOR THIS BOT · 3</span>
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 10px; min-height: 60px; border-bottom: 1px solid #EEECE8">
+<span style="display: flex; flex-direction: column; gap: 1px; flex-grow: 1; min-width: 0"><span style="font-size: 15px; font-weight: 600">{{t.name}}</span><span style="font-size: 13px; color: #5C5C5C">{{t.sub}}</span></span>
+<div role="group" aria-label="{{t.name}}" style="display: flex; padding: 2px; border-radius: 12px; background: #F6F5F2">
+<sc-for list="{{t.levels}}" as="lv" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{lv.pressed}}" style="width: 50px; height: 44px; border: none; border-radius: 10px; background: {{lv.bg}}; color: {{lv.ink}}; font-family: inherit; font-size: 13px; font-weight: 600; padding: 0">{{lv.label}}</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<span style="font-size: 12px; line-height: 18px; color: #5C5C5C">Ask: the bot waits for your approval. Auto: it acts on its own.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.4px; color: #5C5C5C">CONNECTED, OFF HERE · 2</span>
+<sc-for list="{{more}}" as="m" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 10px; min-height: 52px; border-bottom: 1px solid #EEECE8">
+<span style="flex-grow: 1; font-size: 15px; font-weight: 600">{{m.name}}</span>
+<button type="button" style="height: 44px; padding: 0 16px; border: 1px solid #171717; border-radius: 10px; background: #FFFFFF; color: #171717; font-family: inherit; font-size: 14px; font-weight: 600">Turn on</button>
+</div>
+</sc-for>
+<a href="Connectors.dc.html" style="align-self: flex-start; font-size: 14px; font-weight: 500; padding: 12px 0">Browse all connectors</a>
+</div>
+<a href="ModelPicker.dc.html" style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; padding: 0 14px; border: 1px solid #E4E2DD; border-radius: 14px; text-decoration: none; color: #171717">
+<span style="font-size: 15px; font-weight: 600">Model</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 14px; color: #5C5C5C">Server default<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></span>
+</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+function levels(sel) {
+return ['Off', 'Ask', 'Auto'].map(function (label, i) {
+var on = i === sel;
+return { label: label, pressed: on ? 'true' : 'false', bg: on ? '#171717' : 'transparent', ink: on ? '#FFFFFF' : '#3D3D3D' };
+});
+}
+var tools = [
+{ name: 'Gmail', sub: 'Reads freely, sending follows this', levels: levels(1) },
+{ name: 'Files', sub: 'Its own folder on the server', levels: levels(2) },
+{ name: 'Notion', sub: 'Reads and writes pages', levels: levels(2) }
+];
+var more = [{ name: 'Calendar' }, { name: 'GitHub' }];
+return { tools: tools, more: more };
+}
+}
+</script>
+</body>
+</html>
