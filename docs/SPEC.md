@@ -68,7 +68,7 @@ Decided:
 - Push notifications to the phone go through a push relay run by the product owner: server to relay to APNs. The server never holds APNs keys.
 - A home machine without a public address is reached through Cloudflare Tunnel or Tailscale. The app only needs a URL.
 - The stack (Decided 26 Nov 2026, [ADR-0001](decisions/0001-typescript-monorepo-stack.md)):
-  - pnpm monorepo: `apps/waw-bot-client`, `apps/waw-bot-server`, `packages/api-contract`, `packages/core`.
+  - pnpm monorepo: `apps/waw-bot-client`, `apps/waw-bot-desktop` (the Electron shell), `apps/waw-bot-server`, `packages/api-contract`, `packages/core` ([ADR-0002](decisions/0002-scaffold-toolchain.md)).
   - Client in React Native for iOS. The desktop app is the same client built with React Native Web inside an Electron shell, loaded from the app bundle, never from the server.
   - Server in Node and TypeScript.
 

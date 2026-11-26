@@ -6,12 +6,14 @@ comes from the project template: change it in the template, except the project b
 <!-- project:start -->
 The project is **WAW Bot** (`waw-software/bot`). Self-hosted bot for daily routines.
 Stack: TypeScript pnpm monorepo with React Native (iOS), Electron, a Node server and Postgres
-([ADR-0001](docs/decisions/0001-typescript-monorepo-stack.md)).
+([ADR-0001](docs/decisions/0001-typescript-monorepo-stack.md)); toolchain in [ADR-0002](docs/decisions/0002-scaffold-toolchain.md).
 Read first: `docs/SPEC.md` (behaviour), `docs/DESIGN.md` (look), `docs/design/README.md`
 (mockups), `docs/requirements.md`, `docs/roadmap.md`.
 Review criteria: `docs/review-criteria.md`.
-Commands: `scripts/check.sh` is the only command until Milestone 1 adds install, run, test and
-lint commands.
+Commands: Node 24.21.0 and pnpm 12.21.0; `scripts/env.sh setup` installs from the lockfile;
+`pnpm format:check`, `pnpm lint`, `pnpm typecheck`, `pnpm test:unit` run one part of the check.
+Run: `pnpm --filter "@waw/bot-server..." run build`, then `pnpm --filter @waw/bot-server start:api`
+(or `start:worker`); `pnpm --filter @waw/bot-client ios`; `pnpm --filter @waw/bot-desktop start`.
 <!-- project:end -->
 
 ## Commands

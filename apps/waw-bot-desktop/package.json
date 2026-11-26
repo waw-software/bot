@@ -1,0 +1,21 @@
+{
+	"name": "@waw/bot-desktop",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"main": "./out/main/index.js",
+	"scripts": {
+		"build": "electron-vite build && node scripts/stage-renderer.mjs",
+		"start": "pnpm --filter @waw/bot-client run build && pnpm run build && install-electron && electron-vite preview --skipBuild",
+		"smoke": "pnpm --filter @waw/bot-client run build && pnpm run build && install-electron && WAW_BOT_SMOKE=1 electron-vite preview --skipBuild",
+		"smoke:built": "install-electron && WAW_BOT_SMOKE=1 electron-vite preview --skipBuild",
+		"typecheck": "tsc --noEmit -p tsconfig.json",
+		"test": "vitest run"
+	},
+	"devDependencies": {
+		"@waw/bot-client": "workspace:*",
+		"electron": "44.11.5",
+		"electron-vite": "6.0.0",
+		"vite": "8.3.8"
+	}
+}
