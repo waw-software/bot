@@ -85,4 +85,28 @@ describe("waitFor", () => {
 		).rejects.toThrow("timed out after 3 s waiting for the thing");
 		expect(clock.elapsed()).toBe(3000);
 	});
+
+	it("waitFor rejects a value that arrives after the deadline", async () => {
+		const clock = fakeClock();
+		const slowProbe = async () => {
+			await clock.sleep(1900);
+			return "late";
+		};
+		await expect(
+			waitFor(slowProbe, "the thing", 1000, 500, clock),
+		).rejects.toThrow("timed out after 1 s waiting for the thing");
+	});
+
+	it("waitFor does not start a probe after the deadline", async () => {
+		const clock = fakeClock();
+		let calls = 0;
+		const probe = async () => {
+			calls++;
+			return undefined;
+		};
+		await expect(waitFor(probe, "the thing", 1000, 500, clock)).rejects.toThrow(
+			"timed out after 1 s waiting for the thing",
+		);
+		expect(calls).toBe(2);
+	});
 });

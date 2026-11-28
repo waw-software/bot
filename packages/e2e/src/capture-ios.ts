@@ -7,7 +7,7 @@
 //   (`xcrun simctl list devices booted`);
 // - Expo Go 58 installed on that simulator.
 import { type ChildProcess, spawn, spawnSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { readFileSync, renameSync, rmSync } from "node:fs";
 import { createServer } from "node:net";
 import { join } from "node:path";
 
@@ -76,13 +76,14 @@ export async function waitFor<T>(
 	clock: Clock,
 ): Promise<T> {
 	const deadline = clock.now() + timeoutMs;
+	const timedOut = () =>
+		new Error(`timed out after ${timeoutMs / 1000} s waiting for ${what}`);
 	for (;;) {
+		if (clock.now() >= deadline) throw timedOut();
 		const value = await probe();
-		if (value !== undefined) return value;
-		if (clock.now() >= deadline) {
-			throw new Error(
-				`timed out after ${timeoutMs / 1000} s waiting for ${what}`,
-			);
+		if (value !== undefined) {
+			if (clock.now() > deadline) throw timedOut();
+			return value;
 		}
 		await clock.sleep(intervalMs);
 	}
@@ -274,24 +275,31 @@ export async function captureIos(
 				realClock,
 			);
 
+			// <id>.actual.png is written only once the screenshot has passed every check.
+			const trial = join(outDir, `.${id}.trial.png`);
 			const path = join(outDir, `${id}.actual.png`);
-			let previous: Buffer | undefined;
-			const png = await waitFor(
-				async () => {
-					metro.assertRunning();
-					simctl(["io", device, "screenshot", path]);
-					const current = readFileSync(path);
-					if (previous?.equals(current)) return current;
-					previous = current;
-					return undefined;
-				},
-				`the iOS screen of ${id} to settle`,
-				SETTLE_TIMEOUT_MS,
-				POLL_MS,
-				realClock,
-			);
-			const problem = iosWidthProblem(pngSize(png).width);
-			if (problem) throw new Error(problem);
+			try {
+				let previous: Buffer | undefined;
+				const png = await waitFor(
+					async () => {
+						metro.assertRunning();
+						simctl(["io", device, "screenshot", trial]);
+						const current = readFileSync(trial);
+						if (previous?.equals(current)) return current;
+						previous = current;
+						return undefined;
+					},
+					`the iOS screen of ${id} to settle`,
+					SETTLE_TIMEOUT_MS,
+					POLL_MS,
+					realClock,
+				);
+				const problem = iosWidthProblem(pngSize(png).width);
+				if (problem) throw new Error(problem);
+				renameSync(trial, path);
+			} finally {
+				rmSync(trial, { force: true });
+			}
 			captured.set(id, path);
 		}
 		return captured;

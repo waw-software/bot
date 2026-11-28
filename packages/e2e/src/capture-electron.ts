@@ -1,6 +1,6 @@
 // Captures one screen of the built desktop app at a fixed content size.
 import { join } from "node:path";
-import { expect } from "@playwright/test";
+import { type CDPSession, expect, type Page } from "@playwright/test";
 import { launchDesktop } from "./electron.ts";
 
 const RESIZE_TIMEOUT_MS = 5000;
@@ -16,18 +16,32 @@ export async function captureElectron(
 	repoRoot: string,
 ): Promise<string> {
 	const { app, window: page } = await launchDesktop(repoRoot);
+	let cdp: CDPSession | undefined;
 	try {
 		await app.evaluate(({ BrowserWindow }, size) => {
 			BrowserWindow.getAllWindows()[0]?.setContentSize(size.width, size.height);
 		}, item.size);
-		const innerWidth = () => page.evaluate(() => window.innerWidth);
+		// The display clamps the window; the viewport set through CDP is not limited by it.
+		cdp = await page.context().newCDPSession(page);
+		await cdp.send("Emulation.setDeviceMetricsOverride", {
+			width: item.size.width,
+			height: item.size.height,
+			deviceScaleFactor: 0,
+			mobile: false,
+		});
+		const innerSize = () =>
+			page.evaluate(() => ({
+				width: window.innerWidth,
+				height: window.innerHeight,
+			}));
 		try {
 			await expect
-				.poll(innerWidth, { timeout: RESIZE_TIMEOUT_MS })
-				.toBe(item.size.width);
+				.poll(innerSize, { timeout: RESIZE_TIMEOUT_MS })
+				.toEqual(item.size);
 		} catch (cause) {
+			const { width, height } = await innerSize();
 			throw new Error(
-				`window is ${await innerWidth()} px wide, expected ${item.size.width} (display too small?)`,
+				`window is ${width}x${height} px, expected ${item.size.width}x${item.size.height}`,
 				{ cause },
 			);
 		}
@@ -38,6 +52,19 @@ export async function captureElectron(
 		await page.screenshot({ path, animations: "disabled" });
 		return path;
 	} finally {
-		await app.close();
+		try {
+			if (cdp) await detach(cdp, page);
+		} finally {
+			await app.close();
+		}
+	}
+}
+
+async function detach(cdp: CDPSession, page: Page): Promise<void> {
+	try {
+		await cdp.detach();
+	} catch (error) {
+		// A closed app has already dropped the session.
+		if (!page.isClosed()) throw error;
 	}
 }
