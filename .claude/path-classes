@@ -41,4 +41,5 @@ gate vitest.config.*
 gate */vitest.config.*
 gate apps/waw-bot-client/app.json
 gate apps/waw-bot-desktop/electron.vite.config.ts
+gate packages/e2e/playwright.config.ts
 gate scripts/project/*

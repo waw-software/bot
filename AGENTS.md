@@ -8,12 +8,12 @@ The project is **WAW Bot** (`waw-software/bot`). Self-hosted bot for daily routi
 Stack: TypeScript pnpm monorepo with React Native (iOS), Electron, a Node server and Postgres
 ([ADR-0001](docs/decisions/0001-typescript-monorepo-stack.md)); toolchain in [ADR-0002](docs/decisions/0002-scaffold-toolchain.md).
 Read first: `docs/SPEC.md` (behaviour), `docs/DESIGN.md` (look), `docs/design/README.md`
-(mockups), `docs/requirements.md`, `docs/roadmap.md`.
-Review criteria: `docs/review-criteria.md`.
-Commands: Node 24.21.0 and pnpm 12.21.0; `scripts/env.sh setup` installs from the lockfile;
-`pnpm format:check`, `pnpm lint`, `pnpm typecheck`, `pnpm test:unit` run one part of the check.
-Run: `pnpm --filter "@waw/bot-server..." run build`, then `pnpm --filter @waw/bot-server start:api`
-(or `start:worker`); `pnpm --filter @waw/bot-client ios`; `pnpm --filter @waw/bot-desktop start`.
+(mockups), `docs/requirements.md`, `docs/roadmap.md`. Review criteria: `docs/review-criteria.md`.
+Commands: Node 24.21.0, pnpm 12.21.0; `scripts/env.sh setup` installs from the lockfile; `pnpm format:check`,
+`pnpm lint`, `pnpm typecheck`, `pnpm test:unit` run one check part; `scripts/env.sh e2e` smokes `/health` and
+the Electron shell. Run: `pnpm --filter "@waw/bot-server..." run build`, then `pnpm --filter @waw/bot-server start:api`
+(or `start:worker`); `pnpm --filter @waw/bot-client ios`; `pnpm --filter @waw/bot-desktop start`. Visual:
+`pnpm --filter @waw/e2e visual --out out/visual/<run> [--screen <id>]... [--ios-device <UDID>]` (screens in `packages/e2e/src/screens.ts`).
 <!-- project:end -->
 
 ## Commands
